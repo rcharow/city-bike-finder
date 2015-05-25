@@ -1,0 +1,134 @@
+* {
+  box-sizing: border-box; }
+
+body {
+  position: absolute;
+  width: 100%;
+  /*margin-top: 50px;*/
+  top: 0;
+  bottom: 0;
+  background-color: #1499D3; }
+
+a {
+  color: #00B7FF; }
+
+footer {
+  color: grey;
+  margin-top: 30px; }
+
+.row {
+  height: 100%; }
+
+.container {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%; }
+
+.col-lg-8 {
+  height: 100%;
+  padding: 0; }
+
+.col-lg-4 {
+  /*height: 100%;*/
+  /*background-color: #9CAFB7;*/
+  /*background-color: #EEF5DB;*/
+  /*background-color: #C5C3C6;*/
+  /*background-color: white;*/ }
+
+.container-30-center {
+  margin-top: 175px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 30%;
+  text-align: center; }
+
+.btn-group-center {
+  margin: 0 auto;
+  text-align: center; }
+
+button.dropdown-toggle {
+  background-color: #1499D3;
+  color: #FFFFFF;
+  border-color: #FFFFFF;
+  width: 100%;
+  font-weight: bold;
+  font-size: 20px; }
+
+button.dropdown-toggle:hover, button.dropdown-toggle:focus {
+  background-color: #1077a4;
+  color: #FFFFFF; }
+
+.dropdown-menu {
+  width: 100%; }
+
+.dropdown-menu > li > a {
+  color: #F38630; }
+  .dropdown-menu > li > a:hover {
+    color: #F38630; }
+  .dropdown-menu > li > a:focus {
+    color: #F38630; }
+
+/**** FORMS ***/
+form {
+  width: 75%;
+  margin: 80px 0px 0px 50px;
+  color: white;
+  background-color: #1499D3; }
+
+input {
+  border-color: #AF7362; }
+
+input:focus {
+  border-color: #AF7362;
+  box-shadow: 0 0 5px rgba(175, 115, 98, 0.4); }
+
+.btn {
+  color: #F38630; }
+
+/**** NAVIGATION ***/
+.navbar {
+  border-radius: 0px; }
+
+a.navbar-brand {
+  color: white;
+  font-family: 'Alegreya', serif;
+  font-weight: bold;
+  font-size: 24px; }
+
+.navbar-inverse .navbar-nav > li > a, .navbar-inverse .navbar-brand {
+  color: #FAFFFD; }
+
+.navbar {
+  /*background-color: #4281A4;
+  border-color: #4281A4;0B032D*/
+  background-color: #F38630;
+  border-color: #F38630;
+  margin: 0; }
+
+.navbar-inverse .navbar-toggle {
+  border-color: white; }
+
+.navbar-inverse .navbar-toggle:hover, .navbar-inverse .navbar-toggle:focus {
+  background-color: #f6a260; }
+
+.navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {
+  border-color: white; }
+
+.fa-bicycle {
+  margin-right: 10px; }
+
+/***** MAP *******/
+#map-canvas {
+  height: 75%;
+  width: 75%;
+  margin: 80px auto 0;
+  border-radius: 10px; }
+
+/***** BIKE INFO ******/
+.station-info {
+  width: 75%;
+  margin: 80px 0px 0px 50px;
+  color: #0D2C54; }
+
+/*# sourceMappingURL=style.css.map */

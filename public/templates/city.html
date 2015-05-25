@@ -1,0 +1,12 @@
+<div class="container-30-center">
+	<div class="btn-group btn-group-center">
+	  <div class="btn-group" dropdown is-open="status.isopen">
+      <button type="button" class="btn dropdown-toggle" dropdown-toggle ng-disabled="disabled">
+        What city are you riding in? <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu" role="menu">
+        <li class="dropdown" ng-repeat="city in cities"><a href="/find-bike/{{city.abbr}}">{{city.name}}</a></li>
+      </ul>
+    </div>
+	</div>
+</div>

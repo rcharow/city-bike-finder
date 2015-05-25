@@ -1,0 +1,22 @@
+{
+  "name": "citibike",
+  "version": "0.0.0",
+  "authors": [
+    "Rachel Charow <rachel.charow@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.4",
+    "jquery": "~2.1.4",
+    "angular-bootstrap": "~0.13.0",
+    "angular-route": "~1.3.15",
+    "angular-animate": "~1.3.15"
+  }
+}
