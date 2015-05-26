@@ -1,6 +1,6 @@
 app.factory('Map',function(){
+	
 	function initializeMap() {
-	  console.log("INIT MAP")
 	  var mapOptions = {
 	    zoom: 12,
 	    center: new google.maps.LatLng(40.7127, -74.0059)//,

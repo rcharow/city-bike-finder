@@ -1,5 +1,14 @@
 app.factory('Station',function($http){
-	
+	var currentLocation
+
+	function setCurrentLocation(location){
+		currentLocation = location
+	}
+
+	function getCurrentLocation(){
+		return currentLocation
+	}
+
 	function getBikeFeedData(cityCode){
 
 		return $http.get('/stations/'+cityCode)
@@ -23,7 +32,9 @@ app.factory('Station',function($http){
 
 	return {
 		bikeFeedData: getBikeFeedData,
-		nearbyStations: getNearbyStations
+		nearbyStations: getNearbyStations,
+		setCurrentLocation: setCurrentLocation,
+		getCurrentLocation: getCurrentLocation
 	}
 
 })

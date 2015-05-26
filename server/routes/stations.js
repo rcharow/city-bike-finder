@@ -13,9 +13,8 @@ function getNearbyStations(lat,lon){
 }
 
 function getStationsAndDistanceToCoord(lat,lon){
-	console.log(allStations)
-	return allStations
-	.map(function(s){
+	console.log("TYPE:", typeof allStations)
+	return allStations.map(function(s){
 		s.distance = geodist({lat: lat, lon: lon}, {lat: s.lat, lon: s.lon},{exact:true})
 		return s
 	})
@@ -29,10 +28,9 @@ router.get('/', function(req, res, next) {
 
 router.get('/:city',function(req,res,next){
 	var data =  bike_data.getBikeFeed(req.params.city)
-	console.log("DATA AT ROUTER",data)
 	data.then(function(){
-		allStations = data
-		res.send(data)
+		allStations = data._result
+		res.send(data._result)
 	})
 })
 
@@ -45,13 +43,14 @@ router.post('/nearby_stations',function(req, res, next){
 		if(err)
 			console.log("Geocode error")
 		location = data.results[0].geometry.location
+		console.log("LOCATION:",location)
 		nearbyStations = getNearbyStations(location.lat,location.lng)
-		return nearbyStations
+		res.send(nearbyStations)
 	})
 
-	data.then(function(){
-		res.send(data)
-	})
+	// data.then(function(){
+	// 	res.send(data)
+	// })
 })
 
 module.exports = router;
