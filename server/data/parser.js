@@ -1,6 +1,6 @@
 
 function nycParser(data){
-	debugger
+	
 	return data.stationBeanList.map(function(station){
 		var s =  {
 			stationName: station.stationName,

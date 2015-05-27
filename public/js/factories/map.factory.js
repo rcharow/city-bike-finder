@@ -8,35 +8,42 @@ app.factory('Map',function(){
 
 	  };
 
-	  var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions)
-	  return map
+	  return {
+	  	options: mapOptions
+
+	  }
 
 	}
 
-	function addStationsToMap(map,stations){
+	function createStationMarkers(map,stations){
 		if(!stations) stations = app.bike_data
-
+		
 		var bounds = new google.maps.LatLngBounds()
-		stations.forEach(function(station){
-		  var point = new google.maps.LatLng(station.lat,station.lon);
+
+		var markers = []
+
+		stations.forEach(function(station,i){
 		  
-		  var marker = new google.maps.Marker({
-		      position: point,
-		      map: map,
-		      title: station.stationName
+		  var marker = {
+		      latitude: station.lat,
+		      longitude: station.lon,
+		      title: station.stationName,
+		      fit:true,
+		      id: i
+		  }
 
-		  });
-		  bounds.extend(marker.position)
-		  map.fitBounds(bounds)
-
-
-
+		  var ltlng = new google.maps.LatLng(marker.latitude,marker.longitude)
+		  bounds.extend(ltlng)
+		  markers.push(marker)
 		})
+		// debugger
+		// map.control.getGMap().fitBounds(bounds)
+		return markers
 	}
 
 	return {
 		map: initializeMap,
-		addStations: addStationsToMap
+		createStationMarkers: createStationMarkers
 	}
 
 	//google.maps.event.addDomListener(window, 'load', initializeMap);

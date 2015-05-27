@@ -36,14 +36,11 @@ router.get('/:city',function(req,res,next){
 
 router.post('/nearby_stations',function(req, res, next){
 	var address, nearbyStations, location
-	console.log("BODY",req.body)
 	address = req.body.streetAddress1 + " " + req.body.city + " " + req.body.zipCode
-	console.log('ADDRESS',address)
 	var data = geocoder.geocode(address,function(err,data){
 		if(err)
 			console.log("Geocode error")
 		location = data.results[0].geometry.location
-		console.log("LOCATION:",location)
 		nearbyStations = getNearbyStations(location.lat,location.lng)
 		res.send(nearbyStations)
 	})

@@ -2,32 +2,28 @@ app.controller('BikeCtrl', function ($scope,$route,$routeParams,$location,Templa
 
 	$scope.stations = stations.data
 
+	$scope.map = {}
+
+	$scope.mapSetup = {
+		center:{latitude:40.7127, longitude:-74.0059},
+		zoom: 12
+	}
+
+	$scope.stationMarkers = []
 	$scope.templates = Template
 
 	$scope.$on('$viewContentLoaded', function(){
 
 		$scope.currentCity = $routeParams.city
-		$scope.map = undefined
-	 	$scope.map = Map.map()
-		debugger
-
-		Map.addStations($scope.map,$scope.stations)
-	 	// Station.bikeFeedData($scope.currentCity)
-	 	// .then(function(result){
-	 	// 	$scope.allStations = result.data
-	 	// 	Map.addStations($scope.map,$scope.allStations)
-	 	// },
-	 	// function(error){
-	 	// 	console.log("ERROR in bike controller",error)
-	 	// })
+		$scope.stationMarkers = Map.createStationMarkers($scope.map,$scope.stations)
+		// debugger
 
 	})
 
 	
 
 	$scope.findNearbyStations = function(){
-		// action="/find_bikes/nearby_stations"
-		//$scope.map = Map.map()
+	
 		console.log("NEARBY")
 		var location = {
 			streetAddress1: $scope.streetAddress1, 
