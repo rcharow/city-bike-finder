@@ -1,26 +1,16 @@
-app.controller('BikeCtrl', function ($scope,$route,$routeParams,$location,Template,Map,Station,stations) {
+app.controller('BikeCtrl', function ($scope,$route,$routeParams,$location,$state,Template,Map,Station,stations,loadChildState) {
 
 	$scope.stations = stations.data
+	console.log('stations',$scope.stations)
 
-	$scope.map = {}
-
-	$scope.mapSetup = {
-		center:{latitude:40.7127, longitude:-74.0059},
-		zoom: 12
-	}
-
-	$scope.stationMarkers = []
 	$scope.templates = Template
 
 	$scope.$on('$viewContentLoaded', function(){
-
-		$scope.currentCity = $routeParams.city
-		$scope.stationMarkers = Map.createStationMarkers($scope.map,$scope.stations)
-		// debugger
+		$scope.map = Map.map()
+		Map.addStations($scope.map,$scope.stations)
+		loadChildState()
 
 	})
-
-	
 
 	$scope.findNearbyStations = function(){
 	
@@ -28,10 +18,13 @@ app.controller('BikeCtrl', function ($scope,$route,$routeParams,$location,Templa
 		var location = {
 			streetAddress1: $scope.streetAddress1, 
 			city: $scope.city ? $scope.city : $scope.currentCity,
+			defaultCity: Station.getCurrentCity(),
 			zipCode: $scope.zipCode
 		}
-
+		console.log('location',location)
 		Station.setCurrentLocation(location)
+
+		$state.go('find-bike.station-results')
 
 		// Station.nearbyStations(location)
 		// .then(function(result){
@@ -42,7 +35,7 @@ app.controller('BikeCtrl', function ($scope,$route,$routeParams,$location,Templa
 		// 	console.log("ERROR in nearby bikes")
 		// }
 
-		$location.path("/bike-results")
+		//$location.path("/bike-results")
 
 	}
 

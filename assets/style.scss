@@ -82,9 +82,9 @@ button.dropdown-toggle{
 	width: 100%;
 }
 
-.dropdown-menu > li > a {
+.dropdown-menu > li {
  	color: $color-nav;
-
+ 	text-align: center;
  	&:hover{
  		color: $color-nav;
  	};
@@ -156,9 +156,10 @@ a.navbar-brand {
 
 /***** MAP *******/
 #map{
-	height: 75%;
+	height: 400px;
 	width: 75%;
-	margin: 80px auto 0;
+	//margin: 80px 0 0 50;
+	margin: 0 auto;
 	border-radius: 10px;
 }
 

@@ -1,5 +1,14 @@
 app.factory('Station',function($http){
+	var currentCity
 	var currentLocation
+
+	function setCurrentCity(city){
+		currentCity = city
+	}
+
+	function getCurrentCity(){
+		return currentCity
+	}
 
 	function setCurrentLocation(location){
 		currentLocation = location
@@ -12,7 +21,7 @@ app.factory('Station',function($http){
 	function getBikeFeedData(cityCode){
 
 		return $http.get('/stations/'+cityCode)
-		  .success(function(data, status, headers, config) {
+		  .success(function (data, status, headers, config) {
 			    return data.result
 		  })
 		  .error(function(data, status, headers, config) {
@@ -23,7 +32,8 @@ app.factory('Station',function($http){
 	function getNearbyStations(location){
 		return $http.post("stations/nearby_stations",location)
 			.success(function (data,status,headers,config) {
-					return data.result
+				console.log("nearby result",data)
+				return data
 			})
 			.error(function(data,status,headers,config){
 					return "Error: " + status
@@ -33,6 +43,8 @@ app.factory('Station',function($http){
 	return {
 		bikeFeedData: getBikeFeedData,
 		nearbyStations: getNearbyStations,
+		setCurrentCity: setCurrentCity,
+		getCurrentCity: getCurrentCity,
 		setCurrentLocation: setCurrentLocation,
 		getCurrentLocation: getCurrentLocation
 	}

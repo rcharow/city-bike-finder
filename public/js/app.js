@@ -1,1 +1,1 @@
-var app = angular.module('bike-finder', ['ui.bootstrap','ngRoute','ngAnimate','uiGmapgoogle-maps']);
+var app = angular.module('bike-finder', ['ui.bootstrap','ngRoute','ngAnimate','ui.router']);

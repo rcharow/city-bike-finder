@@ -5,7 +5,7 @@
         What city are you riding in? <span class="caret"></span>
       </button>
       <ul class="dropdown-menu" role="menu">
-        <li class="dropdown" ng-repeat="city in cities"><a href="/find-bike/{{city.abbr}}">{{city.name}}</a></li>
+        <li class="dropdown" ng-repeat="city in cities" ui-sref="find-bike({city: 'NYC' })">{{city.name}}</li>
       </ul>
     </div>
 	</div>

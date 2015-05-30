@@ -6,9 +6,22 @@ var geodist = require('geodist')
 
 var allStations
 
+function createAddress(addressReq){
+	var address = []
+	if(addressReq.streetAddress1)
+		address.push(addressReq.streetAddress1)
+	if(addressReq.city)
+		address.push(addressReq.city)
+	else
+		address.push(addressReq.defaultCity)
+	if(addressReq.zipCode)
+		address.push(addressReq.zipCode)
+	return address
+}
+
 function getNearbyStations(lat,lon){
 	var stations = getStationsAndDistanceToCoord(lat,lon)
-	console.log("STATIONS",stations)
+
 	return stations.slice(0,5)
 }
 
@@ -36,13 +49,23 @@ router.get('/:city',function(req,res,next){
 
 router.post('/nearby_stations',function(req, res, next){
 	var address, nearbyStations, location
-	address = req.body.streetAddress1 + " " + req.body.city + " " + req.body.zipCode
+
+	address = createAddress(req.body)
+	
 	var data = geocoder.geocode(address,function(err,data){
-		if(err)
+		if(err){
 			console.log("Geocode error")
-		location = data.results[0].geometry.location
-		nearbyStations = getNearbyStations(location.lat,location.lng)
-		res.send(nearbyStations)
+			res.status(500)
+		}else{
+			if(data.results.length){
+				location = data.results[0].geometry.location
+				nearbyStations = getNearbyStations(location.lat,location.lng)
+				console.log('nearby',nearbyStations)
+				res.send(nearbyStations)
+			}else{
+				res.send([])
+			}
+		}
 	})
 
 	// data.then(function(){
