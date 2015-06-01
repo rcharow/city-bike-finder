@@ -9,12 +9,17 @@
         </button>
 
       <a class="navbar-brand" href="/"><span class="fa fa-bicycle fa-lg"></span>City Cycle</a>
+
     </div>
     <div class="collapse navbar-collapse" ng-class="!navCollapsed && 'in'">
       <ul class="nav navbar-nav">
         <li><a href="/">Home<span class="sr-only">(current)</span></a></li>
         <li><a href="#find_bike">Favorites<span class="sr-only">(current)</span></a></li>
       </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a>{{currentCity}}<span class="sr-only">(current)</span></a></li>
+      </ul>
+
     </div>
   </div>
 </nav>

@@ -1,0 +1,8 @@
+
+6/1:
+
+1. Separate controllers for form and data results
+2. Get rid of main controller
+3. Directive for nav
+4. Factory for cities (or DB)
+5. Don't use onContentViewLoaded

@@ -121,9 +121,16 @@ a.navbar-brand {
   margin-right: 10px; }
 
 /***** MAP *******/
+.fixed-map {
+  top: 80px;
+  position: fixed;
+  height: 500px;
+  width: 65%;
+  margin: 0 20px; }
+
 #map {
-  height: 400px;
-  width: 75%;
+  height: 100%;
+  width: 85%;
   margin: 0 auto;
   border-radius: 10px; }
 
@@ -134,9 +141,22 @@ a.navbar-brand {
   border-radius: 10px; }
 
 /***** BIKE INFO ******/
+.station-results {
+  margin: 80px 0px 0px 25px;
+  overflow: hidden; }
+
 .station-info {
   width: 75%;
-  margin: 80px 0px 0px 50px;
-  color: #0D2C54; }
+  color: white;
+  background-color: #2fb2eb;
+  margin: 25px auto;
+  padding: 10px;
+  border-radius: 10px; }
+  .station-info:hover {
+    background-color: #5dc3f0; }
+
+@media (max-width: 400px) {
+  .fixed-map {
+    height: 200px; } }
 
 /*# sourceMappingURL=style.css.map */

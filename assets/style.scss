@@ -155,10 +155,17 @@ a.navbar-brand {
 
 
 /***** MAP *******/
+.fixed-map{
+	top: 80px;
+	position: fixed;
+	height: 500px;
+	width: 65%;
+	margin: 0 20px;
+}
+
 #map{
-	height: 400px;
-	width: 75%;
-	//margin: 80px 0 0 50;
+	height: 100%;
+	width: 85%;
 	margin: 0 auto;
 	border-radius: 10px;
 }
@@ -172,9 +179,30 @@ a.navbar-brand {
 
 
 /***** BIKE INFO ******/
+.station-results {
+	margin: 80px 0px 0px 25px;
+	overflow: hidden;
+	// text-align: center;
+	
+}
+
 .station-info {
 	width: 75%;
-	margin: 80px 0px 0px 50px;
-	color: #0D2C54;
+	color: white;
+	background-color: lighten($color-background,10%);
+	margin: 25px auto;
+	padding: 10px;
+	border-radius: 10px;
+
+	&:hover {
+		background-color: lighten($color-background,20%)
+	}
+}
+
+
+@media (max-width: 400px){
+	.fixed-map{
+		height: 200px;
+	}
 }
 

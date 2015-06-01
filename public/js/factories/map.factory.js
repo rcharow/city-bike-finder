@@ -1,5 +1,19 @@
-app.factory('Map',function(){
+app.factory('Map',function(Station){
+
+
 	
+	var Map = {
+		map: initializeMap,
+		markers: [],
+		currentInfoWindow: undefined,
+		updateMap: updateMap,
+		addStations: addStationsToMap,
+		clear: clear,
+
+		// createStationMarkers: createStationMarkers
+	}
+	//var markers = [], openWindow
+
 	function initializeMap() {
 	  var mapOptions = {
 	    zoom: 12,
@@ -12,12 +26,36 @@ app.factory('Map',function(){
 	  return map
 	}
 
+	function updateMap(scope){
+		if(!scope.map)
+			scope.map = initializeMap()
+
+		clear()
+		addStationsToMap(scope.map,Station.getStations())
+	}
+
 	function addStationsToMap(map,stations){
-		//if(!stations) stations = app.bike_data
 
 		var bounds = new google.maps.LatLngBounds()
+
+		
 		stations.forEach(function(station){
-		  var point = new google.maps.LatLng(station.lat,station.lon);
+			var point = new google.maps.LatLng(station.lat,station.lon);
+
+			var infoWindowContent = '<div id="content">'+
+	      '<div id="siteNotice">'+
+	      '</div>'+
+	      '<h5 id="firstHeading" class="firstHeading">'+ station.stationName + '</h5>'+
+	      '<div id="bodyContent">'+
+	    	'<p>Available Bikes: ' + station.availableBikes + '</p>' +
+	    	'<p>Available Docks: ' + station.availableDocks + '</p>' +
+	      '</div>'+
+	      '</div>';
+
+			var infoWindow = new google.maps.InfoWindow({
+			  	content: infoWindowContent
+			  })
+
 		  
 		  var marker = new google.maps.Marker({
 		      position: point,
@@ -30,46 +68,42 @@ app.factory('Map',function(){
 		      title: station.stationName
 
 		  });
+
+
+		  if(stations.length<=10)
+		  	marker.icon = null
+
+		  Map.markers.push(
+		  	{
+		  		marker:marker,
+		  		infoWindow:infoWindow
+		  	})
+
+		  google.maps.event.addListener(marker,'click',function(){
+		  	if(Map.openWindow)
+		  		Map.openWindow.close()
+		  	Map.openWindow = infoWindow
+		  	infoWindow.open(map,marker)
+		  })
+
 		  bounds.extend(marker.position)
 		  map.fitBounds(bounds)
-
+		  //map.setZoom(map.getZoom() + 1);
 
 
 		})
+
 	}
 
-
-	function createStationMarkers(map,stations){
-		if(!stations) stations = app.bike_data
-		
-		var bounds = new google.maps.LatLngBounds()
-
-		var markers = []
-
-		stations.forEach(function(station,i){
-		  
-		  var marker = {
-		      latitude: station.lat,
-		      longitude: station.lon,
-		      title: station.stationName,
-		      fit:true,
-		      id: i
-		  }
-
-		  var ltlng = new google.maps.LatLng(marker.latitude,marker.longitude)
-		  bounds.extend(ltlng)
-		  markers.push(marker)
+	function clear (){
+		Map.markers.forEach(function(marker){
+			marker.marker.setMap(null)
 		})
-		// debugger
-		// map.control.getGMap().fitBounds(bounds)
-		return markers
+		Map.markers = []
 	}
 
-	return {
-		map: initializeMap,
-		addStations: addStationsToMap,
-		createStationMarkers: createStationMarkers
-	}
 
-	//google.maps.event.addDomListener(window, 'load', initializeMap);
+
+	return Map
+	
 })

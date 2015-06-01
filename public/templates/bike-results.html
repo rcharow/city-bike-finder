@@ -1,18 +1,20 @@
-<p<div>
+<!-- <p<div>
 	<div class="row">
-	<div class="col-lg-4 col-md-4 col-sm-4">
-		<div class="station-info" ng-repeat="station in stations">
-		
-        	<h4 id='{{station}}'>{{station.stationName}}</h4>
-        	<p>Available Bikes: {{station.availableBikes}}</p>
-        	<p>Available Docks: {{station.availableDocks}}</p>
-        
-  </div>
+	<div class="col-lg-4 col-md-4 col-sm-4"> -->
+<div class="station-results">
+	<!-- <h5>Results:</h5> -->
+	<div class="station-info" ng-repeat="station in stations" ng-click="openMarker($index)">
+		<h4 id='{{station}}'>{{station.stationName}}</h4>
+		<p>Available Bikes: {{station.availableBikes}}</p>
+		<p>Available Docks: {{station.availableDocks}}</p>
+
+	</div>
 </div>
+<!-- </div>
 	<div class="col-lg-8 col-md-8 col-sm-8">
 		<div id="map-canvas"></div>
 	</div>
 
 </div>	
 </div>
-
+ -->

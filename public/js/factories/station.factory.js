@@ -1,6 +1,7 @@
 app.factory('Station',function($http){
 	var currentCity
 	var currentLocation
+	var stations
 
 	function setCurrentCity(city){
 		currentCity = city
@@ -18,6 +19,14 @@ app.factory('Station',function($http){
 		return currentLocation
 	}
 
+	function setStations (currentStations) {
+		stations = currentStations
+	}
+
+	function getStations (){
+		return stations
+	}
+
 	function getBikeFeedData(cityCode){
 
 		return $http.get('/stations/'+cityCode)
@@ -30,6 +39,7 @@ app.factory('Station',function($http){
 	}
 
 	function getNearbyStations(location){
+		console.log('getting nearby stations')
 		return $http.post("stations/nearby_stations",location)
 			.success(function (data,status,headers,config) {
 				console.log("nearby result",data)
@@ -46,7 +56,9 @@ app.factory('Station',function($http){
 		setCurrentCity: setCurrentCity,
 		getCurrentCity: getCurrentCity,
 		setCurrentLocation: setCurrentLocation,
-		getCurrentLocation: getCurrentLocation
+		getCurrentLocation: getCurrentLocation,
+		setStations: setStations,
+		getStations: getStations
 	}
 
 })
